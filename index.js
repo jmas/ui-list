@@ -5,6 +5,8 @@ var dom = require('jmas/dom');
 var defaultItemTemplate = hogan.compile('<div class="ui-list-item">{{name}}</div>');
 
 var UiList = function(options) {
+  options = options || {};
+  
   if (typeof options.items === 'undefined') {
     throw Error('Options property "items" is required.');
   }
