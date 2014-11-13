@@ -77,7 +77,7 @@ UiList.prototype.render = function() {
   var result = [];
   var items = this.items.slice(0);
   for (var i=0,len=items.length; i<len; i++) {
-    result.push('<div data-item="'+i+'" class="ui-list-item">' + this.itemTemplate.render(items[i]) + '</div>');
+    result.push('<div data-item="'+i+'" class="ui-list-item '+(typeof items[i]._selected !== 'undefined' && items[i]._selected === true ? 'active': '')+'">' + this.itemTemplate.render(items[i]) + '</div>');
   }
   dom.replaceHtml(this.el, result.join(''));
 };
