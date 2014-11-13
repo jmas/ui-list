@@ -2,7 +2,7 @@ var Arr = require('jmas/arr');
 var hogan = require('twitter/hogan.js');
 var dom = require('jmas/dom');
 
-var defaultItemTemplate = hogan.compile('<div class="lsit-item">{{name}}</div>');
+var defaultItemTemplate = hogan.compile('<div class="ui-list-item">{{name}}</div>');
 
 var UiList = function(options) {
   if (typeof options.items === 'undefined') {
