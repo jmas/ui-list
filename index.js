@@ -23,9 +23,7 @@ function itemClickHandler(event) {
     }
     
     if (this.multiselect === false) {
-      for (var i=0,len=this.items.length; i<len; i++) {
-        this.items[i]._selected = false;
-      }
+      this.deselectAll();
     }
     
     item._selected = typeof item._selected === 'undefined' ? true: ! item._selected;
@@ -106,6 +104,13 @@ UiList.prototype.setItems = function(items) {
 UiList.prototype.getSelected = function() {
   return this.items.filter(function(item) {
     return typeof item._selected !== 'undefined' && item._selected === true;
+  });
+};
+
+UiList.prototype.deselectAll = function() {
+  this.items.update(function(item) {
+    item._selected = false;
+    return item;
   });
 };
 
