@@ -10,7 +10,7 @@ function itemClickHandler(event) {
   if (target) {
     event.preventDefault();
     
-    var index = this.getAttribute('data-item');
+    var index = target.getAttribute('data-item');
     
     if (! index) {
       return;
