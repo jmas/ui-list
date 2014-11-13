@@ -4,10 +4,6 @@ var dom = require('jmas/dom');
 
 var defaultItemTemplate = hogan.compile('<div class="ui-list-item">{{name}}</div>');
 
-function itemClickHandler(event) {
-  var target = dom.findParentNode(event.target, 'data-item');
-}
-
 var UiList = function(options) {
   options = options || {};
   
@@ -27,9 +23,13 @@ var UiList = function(options) {
     this.el = document.createElement('DIV');
   }
   
+  if (typeof options.onSelect !== 'undefined') {
+    this.onSelect = options.onSelect;
+  }
+  
   this.el.classList.add('ui-list');
   
-  dom.addListener(this.el, 'click', itemClickHandler);
+  dom.addListener(this.el, 'click', this.itemClickHandler.bind(this));
   
   this.setItems(options.items);
 };
@@ -37,6 +37,7 @@ var UiList = function(options) {
 UiList.prototype.el = null;
 UiList.prototype.items = null;
 UiList.prototype.itemTemplate = null;
+UiList.prototype.onSelect = null;
 
 UiList.prototype.render = function() {
   var result = [];
@@ -55,6 +56,40 @@ UiList.prototype.setItems = function(items) {
   this.items = items;
   this.items.on('change', this.render);
   this.render();
+};
+
+UiList.prototype.itemClickHandler = function(event) {
+  var target = dom.findParentNode(event.target, 'data-item');
+  
+  if (target) {
+    event.preventDefault();
+    
+    var index = this.getAttribute('data-item');
+    
+    if (! index) {
+      return;
+    }
+    
+    var item = this.items.get(index);
+    
+    if (! item) {
+      return;
+    }
+    
+    item._selected = typeof item._selected === 'undefined' ? true: ! item._selected;
+    
+    item.set(index, item);
+    
+    if (! this.onSelect) {
+      return;
+    }
+    
+    if (typeof this.onSelect !== 'function') {
+      throw Error('onSelect should be an function.');
+    }
+    
+    this.onSelect();
+  }
 };
 
 module.exports = UiList;
