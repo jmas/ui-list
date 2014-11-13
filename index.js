@@ -24,7 +24,7 @@ function itemClickHandler(event) {
     
     item._selected = typeof item._selected === 'undefined' ? true: ! item._selected;
     
-    item.set(index, item);
+    this.items.set(index, item);
     
     if (! this.onSelect) {
       return;
