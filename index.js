@@ -92,4 +92,10 @@ UiList.prototype.setItems = function(items) {
   this.render();
 };
 
+UiList.prototype.getSelected = function() {
+  return this.items.filter(function(item) {
+    return typeof item._selected !== 'undefined' && item._selected === true;
+  });
+};
+
 module.exports = UiList;
