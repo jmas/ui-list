@@ -22,6 +22,12 @@ function itemClickHandler(event) {
       return;
     }
     
+    if (this.multiselect === false) {
+      for (var i=0,len=this.items.length; i<len; i++) {
+        this.items[i]._selected = false;
+      }
+    }
+    
     item._selected = typeof item._selected === 'undefined' ? true: ! item._selected;
     
     this.items.set(index, item);
