@@ -63,7 +63,7 @@ var UiList = function(options) {
   
   this.el.classList.add('ui-list');
   
-  dom.addListener(this.el, 'click', this.itemClickHandler.bind(this));
+  dom.addListener(this.el, 'click', itemClickHandler.bind(this));
   
   this.setItems(options.items);
 };
