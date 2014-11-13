@@ -57,6 +57,10 @@ var UiList = function(options) {
     this.el = document.createElement('DIV');
   }
   
+  if (typeof options.multiselect !== 'undefined') {
+    this.multiselect = !! options.multiselect;
+  }
+  
   if (typeof options.onSelect !== 'undefined') {
     this.onSelect = options.onSelect;
   }
@@ -72,6 +76,7 @@ UiList.prototype.el = null;
 UiList.prototype.items = null;
 UiList.prototype.itemTemplate = null;
 UiList.prototype.onSelect = null;
+UiList.prototype.multiselect = false;
 
 UiList.prototype.render = function() {
   var result = [];
