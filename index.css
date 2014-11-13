@@ -3,5 +3,14 @@
 }
 
 .ui-list-item {
+  border-bottom: 1px solid #E6E6E6;
+  padding: .8em;
+  cursor: pointer;
+  transition: .3s;
+}
 
+.ui-list-item:hover,
+.ui-list-item.active {
+  background-color: rgba(200, 200, 200, .3);
+  color: #1467c2;
 }
