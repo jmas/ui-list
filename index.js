@@ -2,7 +2,7 @@ var Arr = require('jmas/arr');
 var hogan = require('twitter/hogan.js');
 var dom = require('jmas/dom');
 
-var defaultItemTemplate = hogan.compile('<div class="ui-list-item">{{name}}</div>');
+var defaultItemTemplate = hogan.compile('<div>{{name}}</div>');
 
 function itemClickHandler(event) {
   var target = dom.findParentNode(event.target, 'data-item');
@@ -77,7 +77,7 @@ UiList.prototype.render = function() {
   var result = [];
   var items = this.items.slice(0);
   for (var i=0,len=items.length; i<len; i++) {
-    result.push('<div data-item="'+i+'">' + this.itemTemplate.render(items[i]) + '</div>');
+    result.push('<div data-item="'+i+'" class="ui-list-item">' + this.itemTemplate.render(items[i]) + '</div>');
   }
   dom.replaceHtml(this.el, result.join(''));
 };
@@ -88,7 +88,7 @@ UiList.prototype.setItems = function(items) {
   }
   
   this.items = items;
-  this.items.on('change', this.render);
+  this.items.on('change', this.render.bind(this));
   this.render();
 };
 
