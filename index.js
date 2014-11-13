@@ -21,8 +21,9 @@ var UiList = function(options) {
     this.el = options.el;
   } else {
     this.el = document.createElement('DIV');
-    this.el.classList.add('ui-list');
   }
+  
+  this.el.classList.add('ui-list');
   
   this.setItems(options.items);
 };
