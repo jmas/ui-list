@@ -41,7 +41,7 @@ UiList.prototype.render = function() {
 };
 
 UiList.prototype.setItems = function(items) {
-  if (items typeof Arr === false) {
+  if (items instanceof Arr === false) {
     throw Error('items should be an instance of Arr.');
   }
   
